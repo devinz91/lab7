@@ -49,12 +49,34 @@ public class LinkedStack<E> implements IStack<E> {
   }
 
   @Override
-  public List<E> asList() {
-    ArrayList<E> list = new ArrayList<E>();
-    while (top != null) {
-      list.add(top.data);
-      top = top.next;
+    public List<E> asList() {
+    final ArrayList<E> result = new ArrayList<>();
+    populateList(top, result); // TODO FINISHED replace null with the right reference
+    return result;
+  }
+
+  private void populateList(final Node<E> curr, final List<E> result) {
+    // TODO FINISHED recursively populate the list in the desired order
+    if (curr == null) {
+      return;
     }
-    return list;
+    result.add(curr.data);
+    populateList(curr.next, result);
+  }
+
+  @Override
+  public List<E> asFifoList() {
+    final ArrayList<E> result = new ArrayList<>();
+    populateFifoList(top, result); // TODO FINISHED replace null with the right reference
+    return result;
+  }
+
+  private void populateFifoList(final Node<E> curr, final List<E> result) {
+    // TODO FINISHED recursively populate the list in the desired order
+    if (curr == null) {
+      return;
+    }
+    result.add(0, curr.data);
+    populateFifoList(curr.next, result);
   }
 }

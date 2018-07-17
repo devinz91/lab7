@@ -7,28 +7,23 @@ import java.util.Stack;
 public class ReverseLines {
 
   public static void main(final String[] args) {
-    // TODO read successive input lines until EOF, then print out in reverse order
-
-    IStack<String> stack = new LinkedStack<>();
-
+    System.out.println("Enter input, enter nothing to end.");
     final Scanner input = new Scanner(System.in);
-    System.out.println("Enter a word by a single letter at a time. Once the word is finished, type 'EOF'");
-    while (input.hasNextLine()) {
-
-      final String line = input.nextLine();
-      if (line.equals("EOF")) break;
-      stack.push(line);
+    printReverse(input);
+  }
+  private static void printReverse(final Scanner input) {
+    // TODO recursively read and print successive input lines until EOF, then print them out in reverse order
+    String inputString = input.nextLine();
+    Stack<String> reversed = new Stack<>();
+    if (!inputString.equals(""))
+    {
+      reversed.push(inputString);
+      System.out.println(inputString);
+      printReverse(input);
     }
-
-    while(!stack.isEmpty()){
-      System.out.println(stack.pop());
+    else {
+      return;
     }
-
-
-
-
-
-
-
+    System.out.println(reversed.pop());
   }
 }
